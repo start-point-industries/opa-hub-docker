@@ -12,5 +12,10 @@ This configuration has been tested on Windows 10 and macOS 10.13.
 1. Log in to Oracle Container Registry through Docker `docker login container-registry.oracle.com`
 1. Download [OPA Server 12.2.10](http://www.oracle.com/technetwork/apps-tech/policy-automation/downloads/index.html)
 1. Copy the contents of the `opa` directory from the downloaded zip into `opa-hub-docker/opa`
-1. Run the provided `start` script on the command line (this will take some time the first run since Docker has to download the MySQL and Weblogic images which are massive)
+1. Run the provided `install.sh / .bat` script on the command line (this will take some time the first run since Docker has to download the MySQL and Weblogic images)
 1. Access your new hub at http://localhost:7001/dev/opa-hub (admin/password can be found in the command line output)
+
+- `stop.sh` to stop the containers
+- `remove.sh` to delete the containers
+- `start.sh` to start the containers if you haven't already deleted them
+- `install.sh` to install them from scratch (you have to stop and remove them first) 
