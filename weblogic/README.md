@@ -4,7 +4,7 @@
 This is meant as a starting point for anyone interested in running Oracle Policy Automation in Docker.  This configuration uses two existing images, one for a MySQL database and the other a Weblogic server.  It then creates a container from each image and THEN installs OPA.  This makes for an easy way to test new versions of the OPA installer in an Oracle supported environment.
 
 ### Why not?
-This is NOT the best Docker solution for actually running OPA.  To take this a step further, you would want to create a docker image with a particular version of OPA already installed, so that you could spin up containers with OPA pre-installed.  In that situation, you would want to generate the database scripts and place them in a MySQL image BUILD process rather than waiting for the Weblogic container to install the database.  The other thing that is not ideal about this configuration is that the Oracle Weblogic image is MASSIVE (1.14 GB).
+This is NOT the best Docker solution for actually running OPA.  To take this a step further, you would want to create a docker image with a particular version of OPA already installed, so that you could spin up containers with OPA pre-installed.  In that situation, you would want to generate the database scripts and place them in a MySQL image BUILD process rather than waiting for the Weblogic container to install the database.  The other thing that is not ideal about this configuration is that the Oracle Weblogic image is MASSIVE (1.14 GB).  There are projects out there that reduce this size but of course this is challenging since we are not allowed to distribute Oracle binaries.
 
 ### Software Versions
 - Weblogic 12.2.1.3 (container-registry.oracle.com/middleware/weblogic:12.2.1.3 - 1.14 GB)
