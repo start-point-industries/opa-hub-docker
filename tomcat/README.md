@@ -12,8 +12,8 @@ This configuration has been tested on Windows 10 and macOS 10.13.
 1. Install [Docker](https://www.docker.com/community-edition#/download)
 1. Download [OPA Server 12.2.10](http://www.oracle.com/technetwork/apps-tech/policy-automation/downloads/index.html)
 1. Rename the OPA archive `opa.zip`
-1. Copy `opa.zip` into the directory `opa-hub-docker\tomcat\**opa-mysql-slim**\files`
-1. Copy `opa.zip` into the directory `opa-hub-docker\tomcat\**opa-tomcat-slim**\files`
+1. Copy `opa.zip` into the directory opa-hub-docker\tomcat\**opa-mysql-slim**\files
+1. Copy `opa.zip` into the directory opa-hub-docker\tomcat\**opa-tomcat-slim**\files
 1. Run the provided `build.sh / .bat` script on the command line from this directory (`opa-hub-docker\tomcat\`)
 1. Run `run.sh / .bat` to start the containers
 1. Access your new hub at http://localhost:8787/opa-hub (admin/Passw0rd)
