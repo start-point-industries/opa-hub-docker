@@ -1,21 +1,26 @@
-# OPA Hub for Docker
+# OPA Hub for Docker (Tomcat)
+This builds two images: MySQL + OPA SQL scripts and Tomcat + OPA apps.  **This is in no way a supported method of deploying OPA.**
 
-### Why?
-This is meant as a starting point for anyone interested in running Oracle Policy Automation in Docker.  This configuration uses two images, one for a MySQL database and the other a Weblogic server.  It then creates a container from each image and then installs OPA.  This makes for an easy way to test new versions of OPA with Docker, however it is not the best Docker solution for actually running OPA.  To take this a step further, you would want to create a docker image with a particular version of OPA already installed, so that you could spin up containers with OPA pre-installed (maybe a project for another day).
+### Software Versions
+- Tomcat 7 with OpenJDK JRE 7 (tomcat:7-jre7-alpine - 145 MB)
+- MySQL 5.7.21 (mysql:5.7.21 - 374 MB)
+- This should work for OPA 12.2.6+, but has only been tested against 12.2.10.  There's no guarantee it'll work for future versions, but shouldn't be too difficult to tweak.
 
 ### Instructions
 This configuration has been tested on Windows 10 and macOS 10.13.
 1. Clone this repo
 1. Install [Docker](https://www.docker.com/community-edition#/download)
-1. Sign up for Oracle Container Registry (https://container-registry.oracle.com)
-1. Agree to the Weblogic Image Terms and Restrictions (Middleware / Weblogic / Continue)
-1. Log in to Oracle Container Registry through Docker `docker login container-registry.oracle.com`
 1. Download [OPA Server 12.2.10](http://www.oracle.com/technetwork/apps-tech/policy-automation/downloads/index.html)
-1. Copy the contents of the `opa` directory from the downloaded zip into `opa-hub-docker/opa`
-1. Run the provided `install.sh / .bat` script on the command line (this will take some time the first run since Docker has to download the MySQL and Weblogic images)
-1. Access your new hub at http://localhost:7001/dev/opa-hub (admin/password can be found in the command line output)
+1. Rename the OPA archive `opa.zip`
+1. Copy `opa.zip` into the directory `opa-hub-docker\tomcat\**opa-mysql-slim**\files`
+1. Copy `opa.zip` into the directory `opa-hub-docker\tomcat\**opa-tomcat-slim**\files`
+1. Run the provided `build.sh / .bat` script on the command line from this directory (`opa-hub-docker\tomcat\`)
+1. Run `run.sh / .bat` to start the containers
+1. Access your new hub at http://localhost:8787/opa-hub (admin/Passw0rd)
 
-- `stop.sh` to stop the containers
-- `remove.sh` to delete the containers
-- `start.sh` to start the containers if you haven't already deleted them
-- `install.sh` to install them from scratch (you have to stop and remove them first) 
+- `stop` to stop the containers
+- `remove` to delete the containers
+- `start` to start the containers if you haven't already deleted them
+- `run` to install them from scratch again (you have to stop and remove them first)
+- To try a different version of OPA, simply replace the two `opa.zip` files, run `remove` and rerun `build` and `run`
+- Optionally, you can configure the MySQL container to use a Docker volume persisted on the Host machine to avoid losing your data when the container is removed e.g. https://hub.docker.com/_/mysql/ "Where to Store Data"
