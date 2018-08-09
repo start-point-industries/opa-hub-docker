@@ -2,15 +2,16 @@
 This builds two images: MySQL + OPA SQL scripts and Tomcat + OPA apps.  **This is in no way a supported method of deploying OPA.**
 
 ### Software Versions
+- Docker 18.06
 - Tomcat 7 with OpenJDK JRE 7 (tomcat:7-jre7-alpine - 145 MB)
 - MySQL 5.7.21 (mysql:5.7.21 - 374 MB)
-- This should work for OPA 12.2.6+, but has only been tested against 12.2.10.  There's no guarantee it'll work for future versions, but shouldn't be too difficult to tweak.
+- This should work for OPA 12.2.6+, but has only been tested against 12.2.10 and 12.2.11 (check out the tag specific to your version).
 
 ### Instructions
 This configuration has been tested on Windows 10 and macOS 10.13.
 1. Clone this repo
 1. Install [Docker](https://www.docker.com/community-edition#/download)
-1. Download [OPA Server 12.2.10](http://www.oracle.com/technetwork/apps-tech/policy-automation/downloads/index.html)
+1. Download [OPA Server 12.2.11](http://www.oracle.com/technetwork/apps-tech/policy-automation/downloads/index.html)
 1. Rename the OPA archive `opa.zip`
 1. Copy `opa.zip` into the directory opa-hub-docker\tomcat\**opa-mysql-slim**\files
 1. Copy `opa.zip` into the directory opa-hub-docker\tomcat\**opa-tomcat-slim**\files

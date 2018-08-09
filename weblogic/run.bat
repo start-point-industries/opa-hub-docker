@@ -6,7 +6,7 @@ if errorlevel 1 (
 )
 
 echo Starting Weblogic container
-docker run --name opa-weblogic-full -e ADMIN_PASSWORD=Passw0rd -p 7001:7001 --link opa-mysql-full:opa-mysql-full --health-cmd="curl -f http://localhost:7001/console || exit 1" -d container-registry.oracle.com/middleware/weblogic:12.2.1.3
+docker run --name opa-weblogic-full -v %cd%/domain.properties:/u01/oracle/properties/domain.properties -p 7001:7001 -e ADMINISTRATION_PORT_ENABLED=false --link opa-mysql-full:opa-mysql-full --health-cmd="curl -f http://localhost:7001/console || exit 1" -d container-registry.oracle.com/middleware/weblogic:12.2.1.3
 if errorlevel 1 (
     EXIT /B 1
 )
@@ -17,7 +17,7 @@ echo All containers running
 
 echo Installing OPA
 docker cp opa opa-weblogic-full:/u01/oracle/opa
-docker exec --user root opa-weblogic-full chown oracle:oracle -R /u01/oracle/opa
+docker exec --privileged --user root opa-weblogic-full chown oracle:oracle -R /u01/oracle/opa
 docker exec opa-weblogic-full /u01/oracle/opa/bin/install.sh install -non-secure-cookie=true -name=dev -dbconn=opa-mysql-full:3306 -dbuser=root -dbpass=Passw0rd -hubpass=Passw0rd -key=12345678 -wladmin=AdminServer -wladminurl=t3://localhost:7001 -target=AdminServer -wldomain=/u01/oracle/user_projects/domains/base_domain -wlstdir=/u01/oracle/wlserver/common/bin
 if errorlevel 1 (
     EXIT /B 1
