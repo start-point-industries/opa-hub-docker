@@ -12,6 +12,10 @@ sed -i -- 's/opacloud-{0}-{1}.log/\/tmp\/hub.log/g' /tmp/opa-hub/WEB-INF/classes
 #cp -R /tmp/lib /tmp/web-determinations/WEB-INF
 #cp -R /tmp/lib /tmp/opa-hub/WEB-INF
 
-cp $CONTEXT /tmp/determinations-server/META-INF
-cp $CONTEXT /tmp/web-determinations/META-INF
-cp $CONTEXT /tmp/opa-hub/META-INF
+mkdir -p /tmp/determinations-server/META-INF/
+mkdir -p /tmp/web-determinations/META-INF/
+mkdir -p /tmp/opa-hub/META-INF/
+
+cp $CONTEXT /tmp/determinations-server/META-INF/
+cp $CONTEXT /tmp/web-determinations/META-INF/
+cp $CONTEXT /tmp/opa-hub/META-INF/
